@@ -1,33 +1,25 @@
-import {useEffect, useState}from 'react';
-import Api from '../Api'
+import {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 
-const SectionsList = () => {
+import Api from '../Api';
 
-    const [sections, setSections] = useState([
+function SectionsList() {
+  const [sections, setSections] = useState([]);
 
-    ])
+  useEffect(function() {
+    Api.sections.index().then(response => setSections(response.data));
+  }, []);
 
-    //Lets you define a funtion that is gonna be call at different changes in he component
-    //Every 
-    useEffect(function(){
-        Api.sections.index().then(response => {
-            setSections(response.data)
-        })
-    }, [])
-
-    return (
-        <div>
-            <main className="container">
-                <h1>Sections List</h1>
-
-                <ul>
-                    {sections.map((s)=>(
-                        <li>{s.name}</li>
-                    ))}
-                </ul>
-            </main>
-        </div>
-    )
+  return (
+    <main className="container">
+      <h1>Sections List</h1>
+      <Link className="btn btn-primary" to="/sections/new">New</Link>
+      <ul>
+        {sections.map(s => (
+          <li>{s.name}, {s.slug}, {s.position}</li>
+        ))}
+      </ul>
+    </main>
+  );
 }
-
-export default SectionsList
+export default SectionsList;

@@ -1,23 +1,20 @@
-import {Route, Switch, useRouteMatch} from 'react-router-dom'
-import SectionsList from './SectionsList.js'
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 
-function Sections(){
-    const {path} = useRouteMatch();
+import SectionsList from './SectionsList';
+import SectionForm from './SectionForm';
 
-    return(
-        <div>
-            <h1>Sections</h1>
-            <Switch>
-                <Route exact path={path}>
-                    <SectionsList />
-                </Route>
-                <Route path={`${path}/new`}>
+function Sections() {
+  const {path} = useRouteMatch();
 
-                </Route>
-            </Switch>
-        </div>
-    )
+  return (
+    <Switch>
+      <Route exact path={path}>
+        <SectionsList />
+      </Route>
+      <Route path={`${path}/new`}>
+        <SectionForm />
+      </Route>
+    </Switch>
+  );
 }
-
-
-export default Sections
+export default Sections;

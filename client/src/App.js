@@ -20,32 +20,32 @@ function App() {
   return (
     <AuthContextProvider>
       <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route>
-            <Components />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/passwords">
-            <Passwords />
-          </Route>
-          {process.env.REACT_APP_FEATURE_REGISTRATION === 'true' && (
-            <Route path="/register">
-              <Register />
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <Home />
             </Route>
-          )}
-          <Route path="/Sections">
-            <Sections />
-          </Route>
-          <AuthProtectedRoute path="/sectionItems">
-            <SectionItems />
-          </AuthProtectedRoute>
-        </Switch>
+            <Route path="/components">
+              <Components />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/passwords">
+              <Passwords />
+            </Route>
+            {process.env.REACT_APP_FEATURE_REGISTRATION === 'true' && (
+              <Route path="/register">
+                <Register />
+              </Route>
+            )}
+              <Route path="/sections">
+                <Sections />
+              </Route>
+              <AuthProtectedRoute path="/sectionItems">
+                <SectionItems />
+              </AuthProtectedRoute>
+          </Switch>
       </Router>
     </AuthContextProvider>
   );
