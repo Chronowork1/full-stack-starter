@@ -1,14 +1,25 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import Api from "../Api";
 
 function SectionForm() {
+  const {id} = useParams();
   const history = useHistory();
   const [section, setSection] = useState({
     name: '',
     slug: '',
     position: 0
   });
+
+  //useEffect: Loads the function after 
+  //Empty Parameter at the end of useEffect only load once.
+  useEffect(function() {
+    if(id){
+      Api.sections.get(id).then((response)=>{
+        setSection(response.data)
+      })
+    }
+  }, [])
 
   function onChange(event) {
     const newSection = {...section};
@@ -18,8 +29,13 @@ function SectionForm() {
 
   async function onSubmit(event) {
     event.preventDefault();
+    //If id exist from url path, update id and section else it will create a new section
     try {
-      await Api.sections.create(section);
+      if(id){
+        await Api.sections.update(id, section)
+      }else{
+        await Api.sections.create(section)
+      }
       history.push('/sections');
     } catch (error) {
       console.log(error);
