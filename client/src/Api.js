@@ -1,3 +1,4 @@
+//Axios for easier ...
 import axios from 'axios';
 
 const instance = axios.create({
@@ -71,6 +72,11 @@ const Api = {
     },
     delete(id) {
       return instance.delete(`/api/sectionItems/${id}`);
+    }
+  },
+  skills: {
+    index(){
+      return instance.get('/api/skills')
     }
   },
   users: {
