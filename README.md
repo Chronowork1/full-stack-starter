@@ -2,6 +2,10 @@
 
 This repository contains a "starter" project for web application development in JavaScript.
 
+
+## Sequel Commands
+
+
 ## One-time Setup
 
 1. On Github, "Fork" this git repo to your own account so that you have your own copy.
@@ -54,6 +58,7 @@ This repository contains a "starter" project for web application development in 
    
    ```
    bin/create-admin Firstname Lastname email password
+   eg: bin/create-admin hello world hello123@gmail.com helloworld
    ```
    
    Put in your name and email address and a password. This will create a first user in the database.

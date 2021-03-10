@@ -8,15 +8,34 @@ const express = require('express')
 //Cretated when you want to create a new router object to handle requests
 const router = express.Router();
 
+//Go up 2 files and load all the javascript classes in models
+const models = require('../../models')
+
+//Anytime you are reading or writing data, they will be asynchronous
 //Requesting and responding data being sent and received
 router.get('/', async function(req, res){
+    //Ask the models to find all "Skill" in database
+    const rows = await models.Skill.findAll()
 
-    //Hard Code data
     //respose send json data back to client
-    res.json([
-        {id: 1, name:"HTML"},
-        {id: 2, name: "CSS"}
-    ])
+    res.json(rows)
+})
+
+router.post('/', async function (req, res) {
+    //Build a new Skill row in memory from the form data in the body of the request
+    const row = models.Skill.build(req.body)
+
+    try{
+        //wait for the database to save the new row
+        await row.save();
+        //if successful, return 201 status (created) and json data of the row
+        res.status(201).json(row)
+    } catch(error){
+        //if database return an eror print it to console
+        console.log(error)
+        //Send back UNPROCESSABLE ENTITY error code and message itself
+        res.status(422).json(error)
+    }
 })
 
 //Export Router
