@@ -15,6 +15,8 @@ import Register from './Register';
 import SectionItems from './SectionItems';
 import Components from './Components'
 import Sections from './Sections/Sections'
+import Skill from './Skills/skill'
+
 
 function App() {
   return (
@@ -42,6 +44,10 @@ function App() {
               <Route path="/sections">
                 <Sections />
               </Route>
+              <Route path="/skill">
+                <Skill />
+              </Route>
+   
               <AuthProtectedRoute path="/sectionItems">
                 <SectionItems />
               </AuthProtectedRoute>
