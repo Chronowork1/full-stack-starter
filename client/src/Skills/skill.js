@@ -1,4 +1,5 @@
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+
 import SkillList from "./SkillList";
 import SkillForm from './SkillForm';
 
@@ -7,9 +8,15 @@ const Skill = () => {
 
     return (
         <Switch>
+            {/*
+                Main URL Path to SkillList file
+            */}
             <Route exact path={path}>
                 <SkillList />
             </Route>
+            {/*
+                Main URL Path to new SkillList file
+            */}
             <Route path={`${path}/new`}>
                 <SkillForm />
             </Route>
@@ -21,3 +28,4 @@ const Skill = () => {
 }
 
 export default Skill;
+

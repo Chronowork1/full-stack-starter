@@ -13,10 +13,9 @@ import Login from './Login';
 import Passwords from './Passwords';
 import Register from './Register';
 import SectionItems from './SectionItems';
-import Components from './Components'
-import Sections from './Sections/Sections'
-import Skill from './Skills/skill'
-
+import Components from './Components';
+import Sections from './Sections/Sections';
+import Skills from './Skills/skill';
 
 function App() {
   return (
@@ -45,12 +44,13 @@ function App() {
                 <Sections />
               </Route>
               <Route path="/skill">
-                <Skill />
+                <Skills />
               </Route>
    
               <AuthProtectedRoute path="/sectionItems">
                 <SectionItems />
               </AuthProtectedRoute>
+
           </Switch>
       </Router>
     </AuthContextProvider>
